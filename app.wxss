@@ -1,0 +1,7 @@
+page{
+    background-color: #FFF;
+}
+
+text{
+  font-family: "Microsoft Yahei"
+}
