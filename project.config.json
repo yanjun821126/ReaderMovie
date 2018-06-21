@@ -13,7 +13,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.0.9",
 	"appid": "wx7915b339d4e81f54",
-	"projectname": "ReaderAndMovie",
+	"projectname": "ReaderMovie",
 	"isGameTourist": false,
 	"condition": {
 		"search": {

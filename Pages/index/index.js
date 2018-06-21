@@ -10,6 +10,7 @@ Page({
   goTo:function(){
     //navigateTo 调用OnHide方法
     //redirectTo 调用onUnload方法
+    console.log(getApp().globalData);
     wx.navigateTo({
       url: '../posts/post',
     })

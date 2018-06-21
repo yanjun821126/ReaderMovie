@@ -85,3 +85,7 @@ swiper image{
    vertical-align: middle;
    margin-right: 20px;
 }
+
+map{
+  margin: 0 auto;
+}
