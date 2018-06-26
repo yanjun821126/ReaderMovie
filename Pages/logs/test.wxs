@@ -1,0 +1,55 @@
+var tool = require('log.wxs');
+console.log(tool.foo);
+console.log(tool.bar("logic.wxs"));
+
+// var a = '.w', b = 'xs';
+
+// // 字符串拼接
+// console.log('.wxs' === a + b);
+
+ var a = 10, b = 20;
+
+// // 逻辑与
+// console.log(20 === (a && b));
+// // 逻辑或
+// console.log(10 === (a || b));
+
+//console.log(20 === (a, b));
+
+var o = {} //生成一个新的空对象
+
+//生成一个新的非空对象
+o = {
+  'string': 1,  //object 的 key 可以是字符串
+  const_var: 2,  //object 的 key 也可以是符合变量定义规则的标识符
+  func: {}, //object 的 value 可以是任何类型
+};
+
+//对象属性的读操作
+// console.log(o['string']);
+// console.log(o.toString());
+
+// //对象属性的写操作
+// o['string']++;
+// o['string'] += 10;
+// o.const_var++;
+// o.const_var += 10;
+
+// //对象属性的读操作
+// console.log(12 === o['string']);
+// console.log(13 === o.const_var);
+
+// var a = function (x) {
+//   return function () { return x; }
+// }
+// var b = a(100);
+// //console.log(100 === b());
+// console.log(b());
+
+function arg(){
+  return arguments[0] + arguments[1];
+  // console.log(arguments.constructor);
+  // return;
+}
+
+console.log(arg(101,100));

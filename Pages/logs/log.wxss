@@ -1,1 +1,3 @@
 /* Pages/logs/log.wxss */
+
+@import "test.wxss";

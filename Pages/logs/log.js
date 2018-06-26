@@ -25,13 +25,34 @@ Page({
     obj2: {
       c: 3,
       d: 4
+    },
+    item: {
+      index: 1,
+      msg: 'this is a template',
+      time: '2016-09-15'
     }
 
   },
   add: function (e) {
+    console.log(e);
     this.setData({
       count: this.data.count + 1
     })
+  },
+  handleTap1:function(e){
+    console.log(e.currentTarget);
+    console.log("press handleTap1");
+  },
+  handleTap2: function (e) {
+    console.log(e.currentTarget);
+    console.log("press handleTap2");
+  },
+  handleTap3: function (e) {
+    console.log(e.currentTarget);
+    console.log("press handleTap3");
+  },
+  handleTap4: function (e) {
+    console.log("press handleTap4");
   },
   changeText: function () {
     var app = getApp();

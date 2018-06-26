@@ -1,3 +1,4 @@
+<include src="header.wxml"/>
 <!--Pages/logs/log.wxml-->
 <text>Pages/logs/log.wxml</text>
 <view>{{text}}</view>
@@ -11,25 +12,25 @@
 <view>{{newField.text}}</view>
 <button bindtap="addNewField"> Add new data </button>
 <!-- 循环 -->
-<view wx:for="{{array}}" wx:for-index="ids" wx:for-item="item">{{ids}}- {{item}} </view>
-
+<view wx:for="{{array}}" wx:for-index="ids" wx:for-item="item" wx:key="key">{{ids}}- {{item}} </view>
+<!-- 
 <view wx:for="{{[zero, 1, 2, 3, 4]}}"> {{item}} </view>
 
 
 <view wx:for="{{[1,2,3] + ' '}}">
   {{item}}
-</view>
+</view> -->
 
 
-<view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="i">
+<!-- <view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="i">
   <view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="j">
     <view wx:if="{{i <= j}}">
       {{i}} * {{j}} = {{i * j}}
     </view>
   </view>
-</view>
+</view> -->
 
-<block wx:for="{{[1, 2, 3]}}">
+<block wx:for="{{[1, 2, 3]}}" wx:key="key">
   <view> {{index}}: </view>
   <view> {{item}} </view>
 </block>
@@ -38,7 +39,7 @@
 <view wx:elif="{{view == 'APP'}}"> APP </view>
 <view wx:else="{{view == 'MINA'}}"> MINA </view>
 
-<!-- template -->
+<!-- template 模板-->
 <template name="staffName">
   <view>
     FirstName: {{firstName}}, LastName: {{lastName}}
@@ -49,14 +50,127 @@
 <template is="staffName" data="{{...staffB}}"></template>
 <template is="staffName" data="{{...staffC}}"></template>
 
+<template name="objectCombine">
+  <view>
+    <text>"a+b=":{{a+b}}</text>
+  </view>
+  <view>
+    <text>"c+d=":{{c+d}}</text>
+  </view>
+</template>
 
 <template is="objectCombine" data="{{...obj1, ...obj2, e: 5}}"></template>
 
+
+
+<!-- 先定义，后调用 -->
+<template name="msgItem">
+  <view>
+    <text> {{index}}: {{msg}} </text>
+    <text> Time: {{time}} </text>
+  </view>
+</template>
+<!-- 调用模板 -->
+<template is="msgItem" data="{{...item}}"/>
+
+<template name="odd">
+  <view> odd </view>
+</template>
+<template name="even">
+  <view> even </view>
+</template>
+
+<block wx:for="{{[1, 2, 3, 4, 5]}}" wx:key="key">
+    <template is="{{item % 2 == 0 ? 'even' : 'odd'}}"/>
+</block>
+
+
+
 <!-- 时间绑定 -->
-<button bindtap="add"> add function </button>
+<button id="tapTest" data-hi="WeChat" catch:touchstart="add"> add function </button>
 {{count}}
 
+<view id="outer" bind:touchstart="handleTap1" capture-bind:touchstart="handleTap2">
+  outer view
+  <view id="inner" bind:touchstart="handleTap3" capture-bind:touchstart="handleTap4">
+    inner view
+  </view>
+</view>
+
+<view id="outer" bind:touchstart="handleTap1" capture-catch:touchstart="handleTap2">
+  outer view
+  <view id="inner" bind:touchstart="handleTap3" capture-bind:touchstart="handleTap4">
+    inner view
+  </view>
+</view>
 
 
+<view id="outer" bindtap="handleTap1">
+  outer view
+  <view id="middle" catchtap="handleTap2">
+    middle view
+    <view id="inner" bindtap="handleTap3">
+      inner view
+    </view>
+  </view>
+</view>
 
+
+<import src="item.wxml"/>
+<template is="item" data="{{text: 'forbar,hahahahahaha'}}"/>
+
+<!-- 求数组最大值 -->
+<wxs module="m1">
+
+  function getMax(array){
+    var max =0 ;
+    for(var i=0; i<array.length;++i)
+    {
+        //max = max === undefined ? array[i] : (max >= array[i] ? max : array[i]);
+        
+
+        if(max == undefined){
+          max = array[i];
+        }else{
+           if(max >= array[i]){
+              max = max;
+           }else{
+              max = array[i];
+           }
+        }
+        console.log(max);
+    }
+    return max;
+  }
+
+  module.exports.getMax = getMax;
+</wxs>
+
+<view> {{m1.getMax(array)}} </view>
+
+
+<wxs src = "log.wxs" module="tools"></wxs>
+
+<view>{{tools.msg}}</view>
+<view>{{tools.foo}}</view>
+<view>{{tools.bar('yanjun')}}</view>
+
+<wxs src = "test.wxs" module="tool"/>
+
+<view class="section" style="color:#000">
+  <view class="section__title">flex-direction: row</view>
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item bc_green">1</view>
+    <view class="flex-item bc_red">2</view>
+    <view class="flex-item bc_blue">3</view>
+  </view>
+</view>
+<view class="section" style="color:#000">
+  <view class="section__title">flex-direction: column</view>
+  <view class="flex-wrp" style="height: 300px;flex-direction:column;">
+    <view class="flex-item bc_green">1</view>
+    <view class="flex-item bc_red">2</view>
+    <view class="flex-item bc_blue">3</view>
+  </view>
+</view>
 

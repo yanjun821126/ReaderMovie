@@ -8,13 +8,13 @@
       <image src="/images/post/sls.jpg"></image>
     </swiper-item>
   </swiper>
-  <block wx:for ="{{post_data}}" wx:for-item="item" wx:for-index="idx">
+  <block wx:for ="{{post_data}}" wx:for-item="item" wx:for-index="idx" wx:key="post_data">
     <view class='post-container'>
       <view class='post-author-date'>
         <image wx:if="{{item.img_condition}}" class='post-author' src="{{item.avatar}}"></image>
         <text class='post-date'>{{item.date}}</text>
       </view>
-      <text class='post-title' bindtap="onTap">{{"hello"+item.title}}</text>
+      <text class='post-title' bindtap="onTap">{{idx+item.title}}</text>
       <image class='post-image' src='{{item.imgSrc}}'></image>
       <text class='post-content'>{{item.content}}</text>
       <view class='post-like'>
